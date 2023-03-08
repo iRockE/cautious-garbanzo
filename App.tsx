@@ -15,7 +15,7 @@ function App(): JSX.Element {
         items={[
           {
             id: '1',
-            title: 'ice creamm',
+            title: 'ice cream',
           },
           {
             id: '2',
@@ -34,7 +34,6 @@ function App(): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: StatusBar.currentHeight || 0,
   },
 });
 
