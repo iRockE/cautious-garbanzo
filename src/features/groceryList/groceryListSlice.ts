@@ -1,11 +1,11 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { v4 as uuidv4 } from 'uuid';
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {v4 as uuidv4} from 'uuid';
 
-import type { RootState } from '../../app/store'
+import type {RootState} from '../../app/store';
 import ItemData from '../../interfaces/ItemData';
 
 interface GroceryListState {
-  list: ItemData[]
+  list: ItemData[];
 }
 
 const initialState: GroceryListState = {
@@ -22,7 +22,7 @@ const initialState: GroceryListState = {
       id: '3',
       title: 'yogurt',
     },
-  ]
+  ],
 };
 
 export const groceryListSlice = createSlice({
@@ -32,15 +32,15 @@ export const groceryListSlice = createSlice({
     addItem: (state, action: PayloadAction<string>) => {
       const item: ItemData = {
         id: uuidv4(),
-        title: action.payload
-      }
-      action.payload
+        title: action.payload,
+      };
+      action.payload;
       state.list.push(item);
     },
   },
-})
- 
-export const { addItem } = groceryListSlice.actions;
+});
+
+export const {addItem} = groceryListSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectList = (state: RootState) => state.groceryList.list;
