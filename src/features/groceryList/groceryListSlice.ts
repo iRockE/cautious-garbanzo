@@ -18,10 +18,6 @@ const initialState: GroceryListState = {
       id: '2',
       title: 'milk',
     },
-    {
-      id: '3',
-      title: 'yogurt',
-    },
   ],
 };
 

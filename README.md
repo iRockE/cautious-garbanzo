@@ -12,3 +12,6 @@ If `react-devtools` is stuck on "Waiting for React to connect..." after opening 
 Redux Toolkit is the new standard for writing Redux logic. Now using slices instead of separate actions and reducers.
 
 [Redux usage with TypeScript](https://redux.js.org/usage/usage-with-typescript)
+
+#### Styling
+The `colorize` VS Code extension can be used to preview colors in code (need to modify VS Code settings with file types you want colorized).

@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import { COLORS } from '../constants/Colors';
 
 type ItemProps = {
   title: string;
@@ -13,13 +14,15 @@ const Item = ({title}: ItemProps) => (
 
 const styles = StyleSheet.create({
   item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    backgroundColor: COLORS.caribbean,
+    padding: 10,
+    marginVertical: 2,
+    marginHorizontal: 2,
+    marginBottom: 2
   },
   title: {
-    fontSize: 32,
+    color: COLORS.white,
+    fontSize: 18,
   },
 });
 

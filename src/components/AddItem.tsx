@@ -1,6 +1,7 @@
 import React from 'react';
 import {Button, StyleSheet, TextInput, View} from 'react-native';
 import {useAppDispatch} from '../app/hooks';
+import { COLORS } from '../constants/Colors';
 import {addItem} from '../features/groceryList/groceryListSlice';
 
 const AddItem = () => {
@@ -30,6 +31,7 @@ const AddItem = () => {
 const styles = StyleSheet.create({
   wrapper: {},
   input: {
+    color: COLORS.black,
     height: 40,
     margin: 12,
     borderWidth: 1,
