@@ -1,21 +1,35 @@
 import React from 'react';
-import {FlatList} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {COLORS} from '../constants/Colors';
 import {GroceryListData} from '../interfaces/interfaces';
-
+import AddItem from './AddItem';
 import Item from './GroceryItem';
 
 type GroceryListProps = {
   listData: GroceryListData;
 };
 
-function GroceryList(props: GroceryListProps): JSX.Element {
+function GroceryList({listData}: GroceryListProps): JSX.Element {
   return (
-    <FlatList
-      data={props.listData.items}
-      renderItem={({item}) => <Item title={item.title} />}
-      keyExtractor={item => item.id}
-    />
+    <View>
+      <Text style={styles.title}>{listData.title}</Text>
+      <FlatList
+        data={listData.items}
+        renderItem={({item}) => <Item title={item.title} />}
+        keyExtractor={item => item.id}
+      />
+      <AddItem listId={listData.id} />
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  title: {
+    color: COLORS.black,
+    fontSize: 18,
+    marginVertical: 2,
+    marginHorizontal: 12,
+  },
+});
 
 export default GroceryList;
