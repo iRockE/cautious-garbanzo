@@ -1,6 +1,6 @@
 import React from 'react';
 import {FlatList} from 'react-native';
-import { GroceryListData } from '../interfaces/interfaces';
+import {GroceryListData} from '../interfaces/interfaces';
 
 import Item from './GroceryItem';
 

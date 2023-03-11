@@ -2,13 +2,17 @@ import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {v4 as uuidv4} from 'uuid';
 
 import type {RootState} from '../../app/store';
-import { AddItemPayload, GroceryListsState, ItemData } from '../../interfaces/interfaces';
+import {
+  AddItemPayload,
+  GroceryListsState,
+  ItemData,
+} from '../../interfaces/interfaces';
 
 const initialState: GroceryListsState = {
   groceryLists: [
     {
       id: '0',
-      title: "staple items",
+      title: 'staple items',
       items: [
         {
           id: '1',
@@ -21,8 +25,8 @@ const initialState: GroceryListsState = {
           quantity: 2,
         },
       ],
-    }
-  ]
+    },
+  ],
 };
 
 export const groceryListsSlice = createSlice({
@@ -33,9 +37,11 @@ export const groceryListsSlice = createSlice({
       const item: ItemData = {
         id: uuidv4(),
         title: action.payload.title,
-        quantity: 1
+        quantity: 1,
       };
-      const listIndex = state.groceryLists.findIndex(lists => lists.id === action.payload.listId);
+      const listIndex = state.groceryLists.findIndex(
+        lists => lists.id === action.payload.listId,
+      );
       state.groceryLists[listIndex].items.push(item);
     },
   },

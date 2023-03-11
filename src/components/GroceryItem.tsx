@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import { COLORS } from '../constants/Colors';
+import {COLORS} from '../constants/Colors';
 
 type ItemProps = {
   title: string;
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     padding: 10,
     marginVertical: 2,
     marginHorizontal: 2,
-    marginBottom: 2
+    marginBottom: 2,
   },
   title: {
     color: COLORS.white,
