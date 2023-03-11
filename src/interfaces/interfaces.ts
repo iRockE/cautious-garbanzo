@@ -24,3 +24,8 @@ export interface AddItemPayload {
   listId: string;
   title: string;
 }
+
+export interface RemoveItemPayload {
+  listId: string;
+  itemId: string;
+}

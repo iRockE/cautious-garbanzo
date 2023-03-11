@@ -6,6 +6,7 @@ import {
   AddItemPayload,
   GroceryListsState,
   ItemData,
+  RemoveItemPayload,
 } from '../../interfaces/interfaces';
 
 const initialState: GroceryListsState = {
@@ -44,10 +45,18 @@ export const groceryListsSlice = createSlice({
       );
       state.groceryLists[listIndex].items.push(item);
     },
+    removeItem: (state, action: PayloadAction<RemoveItemPayload>) => {
+      const listIndex = state.groceryLists.findIndex(
+        lists => lists.id === action.payload.listId,
+      );
+      state.groceryLists[listIndex].items = state.groceryLists[
+        listIndex
+      ].items.filter(item => item.id !== action.payload.itemId);
+    },
   },
 });
 
-export const {addItem} = groceryListsSlice.actions;
+export const {addItem, removeItem} = groceryListsSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const getLists = (state: RootState) => state.groceryLists.groceryLists;

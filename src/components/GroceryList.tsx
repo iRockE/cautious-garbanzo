@@ -15,7 +15,7 @@ function GroceryList({listData}: GroceryListProps): JSX.Element {
       <Text style={styles.title}>{listData.title}</Text>
       <FlatList
         data={listData.items}
-        renderItem={({item}) => <Item title={item.title} />}
+        renderItem={({item}) => <Item itemData={item} listId={listData.id} />}
         keyExtractor={item => item.id}
       />
       <AddItem listId={listData.id} />
