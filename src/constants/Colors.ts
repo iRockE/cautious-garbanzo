@@ -5,5 +5,6 @@ export const COLORS = {
   dogwood: '#FFDDD2',
   tangerine: '#E29578',
   white: '#fff',
+  grey: '#777',
   black: '#000',
 };

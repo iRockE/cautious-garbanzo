@@ -11,7 +11,7 @@ type GroceryListProps = {
 
 function GroceryList({listData}: GroceryListProps): JSX.Element {
   return (
-    <View>
+    <View style={styles.container}>
       <Text style={styles.title}>{listData.title}</Text>
       <FlatList
         data={listData.items}
@@ -24,6 +24,9 @@ function GroceryList({listData}: GroceryListProps): JSX.Element {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+  },
   title: {
     color: COLORS.black,
     fontSize: 18,

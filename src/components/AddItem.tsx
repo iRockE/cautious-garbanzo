@@ -1,5 +1,5 @@
 import React from 'react';
-import {Button, StyleSheet, TextInput, View} from 'react-native';
+import {StyleSheet, TextInput, View} from 'react-native';
 import {useAppDispatch} from '../app/hooks';
 import {COLORS} from '../constants/Colors';
 import {addItem} from '../features/groceryList/groceryListsSlice';
@@ -13,7 +13,7 @@ const AddItem = ({listId}: AddItemProps) => {
 
   const dispatch = useAppDispatch();
 
-  const onsubmit = () => {
+  const onSubmit = () => {
     if (text) {
       dispatch(
         addItem({
@@ -30,9 +30,11 @@ const AddItem = ({listId}: AddItemProps) => {
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
+        onSubmitEditing={onSubmit}
+        placeholder="Add Item"
+        placeholderTextColor={COLORS.grey}
         value={text}
       />
-      <Button onPress={onsubmit} title="Add" />
     </View>
   );
 };
