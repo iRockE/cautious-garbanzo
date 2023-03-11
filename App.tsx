@@ -5,10 +5,10 @@ import AddItem from './src/components/AddItem';
 
 import GroceryList from './src/components/GroceryList';
 import {COLORS} from './src/constants/Colors';
-import {selectList} from './src/features/groceryList/groceryListSlice';
+import {getLists} from './src/features/groceryList/groceryListsSlice';
 
 function App(): JSX.Element {
-  const list = useAppSelector(selectList);
+  const lists = useAppSelector(getLists);
 
   return (
     <SafeAreaView style={styles.container}>
@@ -16,8 +16,8 @@ function App(): JSX.Element {
         barStyle={'light-content'}
         backgroundColor={COLORS.caribbean}
       />
-      <GroceryList items={list} />
-      <AddItem />
+      <GroceryList listData={lists[0]} />
+      <AddItem listId={lists[0].id} />
     </SafeAreaView>
   );
 }

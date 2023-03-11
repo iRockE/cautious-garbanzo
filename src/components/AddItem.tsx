@@ -2,16 +2,23 @@ import React from 'react';
 import {Button, StyleSheet, TextInput, View} from 'react-native';
 import {useAppDispatch} from '../app/hooks';
 import { COLORS } from '../constants/Colors';
-import {addItem} from '../features/groceryList/groceryListSlice';
+import {addItem} from '../features/groceryList/groceryListsSlice';
 
-const AddItem = () => {
+type AddItemProps = {
+  listId: string;
+};
+
+const AddItem = ({listId}: AddItemProps) => {
   const [text, onChangeText] = React.useState('');
 
   const dispatch = useAppDispatch();
 
   const onsubmit = () => {
     if (text) {
-      dispatch(addItem(text));
+      dispatch(addItem({
+        listId: listId,
+        title: text
+      }));
       onChangeText('');
     }
   };

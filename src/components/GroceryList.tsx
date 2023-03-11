@@ -1,17 +1,17 @@
 import React from 'react';
 import {FlatList} from 'react-native';
+import { GroceryListData } from '../interfaces/interfaces';
 
-import ItemData from '../interfaces/ItemData';
 import Item from './GroceryItem';
 
 type GroceryListProps = {
-  items: ItemData[];
+  listData: GroceryListData;
 };
 
 function GroceryList(props: GroceryListProps): JSX.Element {
   return (
     <FlatList
-      data={props.items}
+      data={props.listData.items}
       renderItem={({item}) => <Item title={item.title} />}
       keyExtractor={item => item.id}
     />

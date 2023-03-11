@@ -1,7 +1,7 @@
 import {combineReducers, configureStore} from '@reduxjs/toolkit';
-import {groceryListReducer} from '../features/groceryList/groceryListSlice';
+import {groceryListsReducer} from '../features/groceryList/groceryListsSlice';
 
-const rootReducer = combineReducers({groceryList: groceryListReducer});
+const rootReducer = combineReducers({groceryLists: groceryListsReducer});
 
 export const store = configureStore({
   reducer: rootReducer,
