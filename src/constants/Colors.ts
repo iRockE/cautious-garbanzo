@@ -4,4 +4,6 @@ export const COLORS = {
   alice: '#EDF6F9',
   dogwood: '#FFDDD2',
   tangerine: '#E29578',
+  white: '#fff',
+  black: '#000',
 };
