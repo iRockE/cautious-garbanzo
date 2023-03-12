@@ -29,3 +29,13 @@ export interface RemoveItemPayload {
   listId: string;
   itemId: string;
 }
+
+export interface UpdateListItemsPayload {
+  listId: string;
+  items: ItemData[];
+}
+
+export interface UpdateListTitlePayload {
+  listId: string;
+  title: string;
+}

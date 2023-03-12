@@ -1,22 +1,47 @@
 import React from 'react';
-import {FlatList, StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
+import DraggableFlatList, {
+  DragEndParams,
+  RenderItemParams,
+} from 'react-native-draggable-flatlist';
+import {useAppDispatch} from '../app/hooks';
 import {COLORS} from '../constants/Colors';
-import {GroceryListData} from '../interfaces/interfaces';
+import {updateListItems} from '../features/groceryList/groceryListsSlice';
+import {GroceryListData, ItemData} from '../interfaces/interfaces';
 import AddItem from './AddItem';
-import Item from './GroceryItem';
+import GroceryItem from './GroceryItem';
 
 type GroceryListProps = {
   listData: GroceryListData;
 };
 
 function GroceryList({listData}: GroceryListProps): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  const onDragEnd = ({data}: DragEndParams<ItemData>) => {
+    dispatch(
+      updateListItems({
+        listId: listData.id,
+        items: data,
+      }),
+    );
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.title}>{listData.title}</Text>
-      <FlatList
+      <DraggableFlatList
         data={listData.items}
-        renderItem={({item}) => <Item itemData={item} listId={listData.id} />}
-        keyExtractor={item => item.id}
+        renderItem={({item, drag, isActive}: RenderItemParams<ItemData>) => (
+          <GroceryItem
+            itemData={item}
+            drag={drag}
+            dragging={isActive}
+            listId={listData.id}
+          />
+        )}
+        keyExtractor={(item: ItemData) => item.id}
+        onDragEnd={onDragEnd}
       />
       <AddItem listId={listData.id} />
     </View>

@@ -1,17 +1,19 @@
 import React from 'react';
-import Icon from 'react-native-vector-icons/EvilIcons';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import {useAppDispatch} from '../app/hooks';
 import {COLORS} from '../constants/Colors';
 import {removeItem} from '../features/groceryList/groceryListsSlice';
 import {ItemData} from '../interfaces/interfaces';
 
-type ItemProps = {
+type GroceryItemProps = {
   itemData: ItemData;
   listId: string;
+  drag: () => void;
+  dragging: boolean;
 };
 
-const Item = ({itemData, listId}: ItemProps) => {
+const GroceryItem = ({itemData, listId, drag}: GroceryItemProps) => {
   const dispatch = useAppDispatch();
 
   const onRemove = () => {
@@ -25,8 +27,11 @@ const Item = ({itemData, listId}: ItemProps) => {
 
   return (
     <View style={styles.wrapper}>
+      <Pressable style={styles.buttonWrapper} onLongPress={drag}>
+        <Icon name="drag-indicator" size={24} color={COLORS.white} />
+      </Pressable>
       <Text style={styles.title}>{itemData.title}</Text>
-      <Pressable style={styles.closeButtonWrapper} onPress={onRemove}>
+      <Pressable style={styles.buttonWrapper} onPress={onRemove}>
         <Icon name="close" size={24} color={COLORS.white} />
       </Pressable>
     </View>
@@ -48,11 +53,11 @@ const styles = StyleSheet.create({
     color: COLORS.white,
     fontSize: 18,
   },
-  closeButtonWrapper: {
+  buttonWrapper: {
     width: 30,
     justifyContent: 'center',
     alignItems: 'center',
   },
 });
 
-export default Item;
+export default GroceryItem;
