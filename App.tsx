@@ -1,5 +1,6 @@
 import React from 'react';
 import {SafeAreaView, StatusBar, StyleSheet} from 'react-native';
+import {GestureHandlerRootView} from 'react-native-gesture-handler';
 import {useAppSelector} from './src/app/hooks';
 
 import GroceryList from './src/components/GroceryList';
@@ -10,13 +11,15 @@ function App(): JSX.Element {
   const lists = useAppSelector(getLists);
 
   return (
-    <SafeAreaView style={styles.container}>
-      <StatusBar
-        barStyle={'light-content'}
-        backgroundColor={COLORS.caribbean}
-      />
-      <GroceryList listData={lists[0]} />
-    </SafeAreaView>
+    <GestureHandlerRootView style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <StatusBar
+          barStyle={'light-content'}
+          backgroundColor={COLORS.caribbean}
+        />
+        <GroceryList listData={lists[0]} />
+      </SafeAreaView>
+    </GestureHandlerRootView>
   );
 }
 
