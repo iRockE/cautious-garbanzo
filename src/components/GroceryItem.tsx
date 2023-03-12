@@ -1,6 +1,7 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {Pressable, StyleSheet, Text, View} from 'react-native';
+import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import {useAppDispatch} from '../app/hooks';
 import {COLORS} from '../constants/Colors';
 import {removeItem} from '../features/groceryList/groceryListsSlice';
@@ -25,9 +26,14 @@ const GroceryItem = ({itemData, listId, drag}: GroceryItemProps) => {
     );
   };
 
+  const startDrag = () => {
+    drag();
+    ReactNativeHapticFeedback.trigger('soft');
+  };
+
   return (
     <View style={styles.wrapper}>
-      <Pressable style={styles.buttonWrapper} onLongPress={drag}>
+      <Pressable style={styles.buttonWrapper} onPressIn={startDrag}>
         <Icon name="drag-indicator" size={24} color={COLORS.white} />
       </Pressable>
       <Text style={styles.title}>{itemData.title}</Text>
