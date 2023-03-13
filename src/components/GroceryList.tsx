@@ -31,6 +31,7 @@ function GroceryList({listData}: GroceryListProps): JSX.Element {
     <View style={styles.container}>
       <Text style={styles.title}>{listData.title}</Text>
       <DraggableFlatList
+        keyboardShouldPersistTaps={'handled'}
         data={listData.items}
         renderItem={({item, drag, isActive}: RenderItemParams<ItemData>) => (
           <GroceryItem

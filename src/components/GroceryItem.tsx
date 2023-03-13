@@ -1,10 +1,13 @@
 import React from 'react';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, TextInput, View} from 'react-native';
 import ReactNativeHapticFeedback from 'react-native-haptic-feedback';
 import {useAppDispatch} from '../app/hooks';
 import {COLORS} from '../constants/Colors';
-import {removeItem} from '../features/groceryList/groceryListsSlice';
+import {
+  removeItem,
+  updateItem,
+} from '../features/groceryList/groceryListsSlice';
 import {ItemData} from '../interfaces/interfaces';
 
 type GroceryItemProps = {
@@ -15,7 +18,19 @@ type GroceryItemProps = {
 };
 
 const GroceryItem = ({itemData, listId, drag}: GroceryItemProps) => {
+  const [text, onChangeText] = React.useState(itemData.title);
+
   const dispatch = useAppDispatch();
+
+  const onEditText = () => {
+    dispatch(
+      updateItem({
+        listId: listId,
+        itemId: itemData.id,
+        itemTitle: text,
+      }),
+    );
+  };
 
   const onRemove = () => {
     dispatch(
@@ -36,7 +51,12 @@ const GroceryItem = ({itemData, listId, drag}: GroceryItemProps) => {
       <Pressable style={styles.buttonWrapper} onPressIn={startDrag}>
         <Icon name="drag-indicator" size={24} color={COLORS.white} />
       </Pressable>
-      <Text style={styles.title}>{itemData.title}</Text>
+      <TextInput
+        style={styles.title}
+        value={text}
+        onChangeText={onChangeText}
+        onEndEditing={onEditText}
+      />
       <Pressable style={styles.buttonWrapper} onPress={onRemove}>
         <Icon name="close" size={24} color={COLORS.white} />
       </Pressable>

@@ -31,6 +31,8 @@ const AddItem = ({listId}: AddItemProps) => {
         style={styles.input}
         onChangeText={onChangeText}
         onSubmitEditing={onSubmit}
+        blurOnSubmit={false}
+        returnKeyType={'next'}
         placeholder="Add Item"
         placeholderTextColor={COLORS.grey}
         value={text}
