@@ -1,9 +1,10 @@
 {
-  "name": "AwesomeProject",
+  "name": "Garbanzo",
   "version": "0.0.1",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
+    "android:release": "react-native run-android --mode=release",
     "ios": "react-native run-ios",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
