@@ -6,12 +6,17 @@ import {COLORS} from '../constants/Colors';
 type GroceryListHeaderProps = {
   listId: string;
   title: string;
+  editingEnabled: boolean;
+  toggleEditing: () => void;
 };
 
-const GroceryListHeader = ({listId, title}: GroceryListHeaderProps) => {
+const GroceryListHeader = ({
+  listId,
+  title,
+  editingEnabled,
+  toggleEditing,
+}: GroceryListHeaderProps) => {
   const goBack = () => {};
-
-  const toggleEditing = () => {};
 
   return (
     <View style={styles.header}>
@@ -20,7 +25,11 @@ const GroceryListHeader = ({listId, title}: GroceryListHeaderProps) => {
       </Pressable>
       <Text style={styles.title}>{title}</Text>
       <Pressable style={styles.buttonWrapper} onPress={toggleEditing}>
-        <Icon name="edit" size={24} color={COLORS.white} />
+        <Icon
+          name={editingEnabled ? 'done' : 'edit'}
+          size={24}
+          color={COLORS.white}
+        />
       </Pressable>
     </View>
   );

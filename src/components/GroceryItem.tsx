@@ -15,9 +15,15 @@ type GroceryItemProps = {
   listId: string;
   drag: () => void;
   dragging: boolean;
+  editingEnabed: boolean;
 };
 
-const GroceryItem = ({itemData, listId, drag}: GroceryItemProps) => {
+const GroceryItem = ({
+  itemData,
+  listId,
+  drag,
+  editingEnabed,
+}: GroceryItemProps) => {
   const [text, onChangeText] = React.useState(itemData.title);
 
   const dispatch = useAppDispatch();
@@ -48,18 +54,23 @@ const GroceryItem = ({itemData, listId, drag}: GroceryItemProps) => {
 
   return (
     <View style={styles.wrapper}>
-      <Pressable style={styles.buttonWrapper} onPressIn={startDrag}>
-        <Icon name="drag-indicator" size={24} color={COLORS.white} />
-      </Pressable>
+      {editingEnabed && (
+        <Pressable style={styles.buttonWrapper} onPressIn={startDrag}>
+          <Icon name="drag-indicator" size={24} color={COLORS.white} />
+        </Pressable>
+      )}
       <TextInput
-        style={styles.title}
+        editable={editingEnabed}
+        style={[styles.title, !editingEnabed && styles.editingTitle]}
         value={text}
         onChangeText={onChangeText}
         onEndEditing={onEditText}
       />
-      <Pressable style={styles.buttonWrapper} onPress={onRemove}>
-        <Icon name="close" size={24} color={COLORS.white} />
-      </Pressable>
+      {editingEnabed && (
+        <Pressable style={styles.buttonWrapper} onPress={onRemove}>
+          <Icon name="close" size={24} color={COLORS.white} />
+        </Pressable>
+      )}
     </View>
   );
 };
@@ -78,6 +89,9 @@ const styles = StyleSheet.create({
     padding: 5,
     color: COLORS.white,
     fontSize: 18,
+  },
+  editingTitle: {
+    paddingHorizontal: 12,
   },
   buttonWrapper: {
     alignSelf: 'stretch',

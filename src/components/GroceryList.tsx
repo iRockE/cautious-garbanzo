@@ -16,6 +16,8 @@ type GroceryListProps = {
 };
 
 function GroceryList({listData}: GroceryListProps): JSX.Element {
+  const [editingEnabled, setEditingEnabled] = React.useState(false);
+
   const dispatch = useAppDispatch();
 
   const onDragEnd = ({data}: DragEndParams<ItemData>) => {
@@ -27,9 +29,18 @@ function GroceryList({listData}: GroceryListProps): JSX.Element {
     );
   };
 
+  const toggleEditing = () => {
+    setEditingEnabled(!editingEnabled);
+  };
+
   return (
     <View style={styles.container}>
-      <GroceryListHeader listId={listData.id} title={listData.title} />
+      <GroceryListHeader
+        listId={listData.id}
+        title={listData.title}
+        editingEnabled={editingEnabled}
+        toggleEditing={toggleEditing}
+      />
       <DraggableFlatList
         keyboardShouldPersistTaps={'handled'}
         data={listData.items}
@@ -39,6 +50,7 @@ function GroceryList({listData}: GroceryListProps): JSX.Element {
             drag={drag}
             dragging={isActive}
             listId={listData.id}
+            editingEnabed={editingEnabled}
           />
         )}
         keyExtractor={(item: ItemData) => item.id}
