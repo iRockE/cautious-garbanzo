@@ -1,7 +1,9 @@
 import React from 'react';
 import {Pressable, StyleSheet, View, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
+import {useAppDispatch} from '../app/hooks';
 import {COLORS} from '../constants/Colors';
+import {updateListTitle} from '../features/groceryList/groceryListsSlice';
 
 type GroceryListHeaderProps = {
   listId: string;
@@ -18,7 +20,16 @@ const GroceryListHeader = ({
 }: GroceryListHeaderProps) => {
   const [groceryListTitle, onChangeGroceryListTitle] = React.useState(title);
 
-  const onEditTitle = () => {};
+  const dispatch = useAppDispatch();
+
+  const onEditTitle = () => {
+    dispatch(
+      updateListTitle({
+        listId: listId,
+        title: groceryListTitle,
+      }),
+    );
+  };
 
   const goBack = () => {};
 
