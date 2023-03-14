@@ -1,15 +1,15 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import DraggableFlatList, {
   DragEndParams,
   RenderItemParams,
 } from 'react-native-draggable-flatlist';
 import {useAppDispatch} from '../app/hooks';
-import {COLORS} from '../constants/Colors';
 import {updateListItems} from '../features/groceryList/groceryListsSlice';
 import {GroceryListData, ItemData} from '../interfaces/interfaces';
 import AddItem from './AddItem';
 import GroceryItem from './GroceryItem';
+import GroceryListHeader from './GroceryListHeader';
 
 type GroceryListProps = {
   listData: GroceryListData;
@@ -29,7 +29,7 @@ function GroceryList({listData}: GroceryListProps): JSX.Element {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>{listData.title}</Text>
+      <GroceryListHeader listId={listData.id} title={listData.title} />
       <DraggableFlatList
         keyboardShouldPersistTaps={'handled'}
         data={listData.items}
@@ -52,12 +52,6 @@ function GroceryList({listData}: GroceryListProps): JSX.Element {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  },
-  title: {
-    color: COLORS.black,
-    fontSize: 18,
-    marginVertical: 2,
-    marginHorizontal: 12,
   },
 });
 

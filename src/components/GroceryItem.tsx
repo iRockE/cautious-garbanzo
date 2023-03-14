@@ -80,6 +80,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
   },
   buttonWrapper: {
+    alignSelf: 'stretch',
     width: 30,
     justifyContent: 'center',
     alignItems: 'center',

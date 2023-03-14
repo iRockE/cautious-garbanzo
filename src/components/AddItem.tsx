@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, TextInput, View} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import {useAppDispatch} from '../app/hooks';
 import {COLORS} from '../constants/Colors';
 import {addItem} from '../features/groceryList/groceryListsSlice';
@@ -27,11 +28,17 @@ const AddItem = ({listId}: AddItemProps) => {
 
   return (
     <View style={styles.wrapper}>
+      <Icon
+        style={styles.addIcon}
+        name="add-circle-outline"
+        size={24}
+        color={COLORS.grey}
+      />
       <TextInput
         style={styles.input}
         onChangeText={onChangeText}
         onSubmitEditing={onSubmit}
-        blurOnSubmit={false}
+        blurOnSubmit={text.length === 0}
         returnKeyType={'next'}
         placeholder="Add Item"
         placeholderTextColor={COLORS.grey}
@@ -42,13 +49,21 @@ const AddItem = ({listId}: AddItemProps) => {
 };
 
 const styles = StyleSheet.create({
-  wrapper: {},
+  wrapper: {
+    flexDirection: 'row',
+  },
   input: {
-    color: COLORS.black,
+    flex: 1,
+    color: COLORS.grey,
     height: 40,
-    margin: 12,
-    borderWidth: 1,
-    padding: 10,
+    margin: 2,
+    paddingVertical: 10,
+    paddingHorizontal: 34,
+  },
+  addIcon: {
+    top: 9,
+    left: 5,
+    position: 'absolute',
   },
 });
 
