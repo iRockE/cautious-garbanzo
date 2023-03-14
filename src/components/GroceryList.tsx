@@ -50,7 +50,7 @@ function GroceryList({listData}: GroceryListProps): JSX.Element {
             drag={drag}
             dragging={isActive}
             listId={listData.id}
-            editingEnabed={editingEnabled}
+            editingEnabled={editingEnabled}
           />
         )}
         keyExtractor={(item: ItemData) => item.id}

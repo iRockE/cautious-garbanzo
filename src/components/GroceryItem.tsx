@@ -15,14 +15,14 @@ type GroceryItemProps = {
   listId: string;
   drag: () => void;
   dragging: boolean;
-  editingEnabed: boolean;
+  editingEnabled: boolean;
 };
 
 const GroceryItem = ({
   itemData,
   listId,
   drag,
-  editingEnabed,
+  editingEnabled,
 }: GroceryItemProps) => {
   const [text, onChangeText] = React.useState(itemData.title);
 
@@ -54,19 +54,19 @@ const GroceryItem = ({
 
   return (
     <View style={styles.wrapper}>
-      {editingEnabed && (
+      {editingEnabled && (
         <Pressable style={styles.buttonWrapper} onPressIn={startDrag}>
           <Icon name="drag-indicator" size={24} color={COLORS.white} />
         </Pressable>
       )}
       <TextInput
-        editable={editingEnabed}
-        style={[styles.title, !editingEnabed && styles.editingTitle]}
+        editable={editingEnabled}
+        style={[styles.title, !editingEnabled && styles.editingTitle]}
         value={text}
         onChangeText={onChangeText}
         onEndEditing={onEditText}
       />
-      {editingEnabed && (
+      {editingEnabled && (
         <Pressable style={styles.buttonWrapper} onPress={onRemove}>
           <Icon name="close" size={24} color={COLORS.white} />
         </Pressable>

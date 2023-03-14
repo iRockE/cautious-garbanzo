@@ -1,5 +1,5 @@
 import React from 'react';
-import {Pressable, StyleSheet, Text, View} from 'react-native';
+import {Pressable, StyleSheet, View, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import {COLORS} from '../constants/Colors';
 
@@ -16,6 +16,10 @@ const GroceryListHeader = ({
   editingEnabled,
   toggleEditing,
 }: GroceryListHeaderProps) => {
+  const [groceryListTitle, onChangeGroceryListTitle] = React.useState(title);
+
+  const onEditTitle = () => {};
+
   const goBack = () => {};
 
   return (
@@ -23,7 +27,13 @@ const GroceryListHeader = ({
       <Pressable style={styles.buttonWrapper} onPress={goBack}>
         <Icon name="arrow-back" size={24} color={COLORS.white} />
       </Pressable>
-      <Text style={styles.title}>{title}</Text>
+      <TextInput
+        editable={editingEnabled}
+        style={styles.title}
+        value={groceryListTitle}
+        onChangeText={onChangeGroceryListTitle}
+        onEndEditing={onEditTitle}
+      />
       <Pressable style={styles.buttonWrapper} onPress={toggleEditing}>
         <Icon
           name={editingEnabled ? 'done' : 'edit'}
