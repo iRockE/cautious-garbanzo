@@ -1,3 +1,4 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React from 'react';
 import {AppRegistry} from 'react-native';
 import {Provider} from 'react-redux';
@@ -9,7 +10,9 @@ import {store, persistor} from './src/app/store';
 const AppWithStore = () => (
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App />
+      <NavigationContainer>
+        <App />
+      </NavigationContainer>
     </PersistGate>
   </Provider>
 );

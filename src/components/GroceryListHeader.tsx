@@ -1,3 +1,4 @@
+import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {Pressable, StyleSheet, View, TextInput} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
@@ -21,6 +22,7 @@ const GroceryListHeader = ({
   const [groceryListTitle, onChangeGroceryListTitle] = React.useState(title);
 
   const dispatch = useAppDispatch();
+  const navigation = useNavigation();
 
   const onEditTitle = () => {
     dispatch(
@@ -31,11 +33,9 @@ const GroceryListHeader = ({
     );
   };
 
-  const goBack = () => {};
-
   return (
     <View style={styles.header}>
-      <Pressable style={styles.buttonWrapper} onPress={goBack}>
+      <Pressable style={styles.buttonWrapper} onPress={navigation.goBack}>
         <Icon name="arrow-back" size={24} color={COLORS.white} />
       </Pressable>
       <TextInput
