@@ -1,16 +1,14 @@
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import React from 'react';
-import {useAppSelector} from '../app/hooks';
 import GroceryList from '../components/GroceryList';
-import {getLists} from '../features/groceryList/groceryListsSlice';
 import {RootStackParamList} from '../navigation/PrimaryNavigation';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'GroceryList'>;
 
-const GroceryListScreen = ({navigation}: Props): JSX.Element => {
-  const lists = useAppSelector(getLists);
+const GroceryListScreen = ({route}: Props): JSX.Element => {
+  const {list} = route.params;
 
-  return <GroceryList listData={lists[0]} />;
+  return <GroceryList listData={list} />;
 };
 
 export default GroceryListScreen;
